@@ -18,8 +18,7 @@ export class TaskActionComponent implements OnInit {
     const task: Task = {
       id: 0,
       title: this.title,
-      completed: false,
-      date: new Date()
+      completed: false
     };
     this.taskService.addTask(task);
     this.title = ''

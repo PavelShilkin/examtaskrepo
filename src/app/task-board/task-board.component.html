@@ -1,18 +1,31 @@
-<div id="header">
-    <h1>Доска задач</h1>
-</div>
-
 <div id="board" *ngIf='taskService.tasks.length; else emptyTask'>
+  <h2>Текущие задачи</h2>
     <ul>
         <li *ngFor='let task of taskService.tasks; let idx = index'>
-            {{ idx + 1 }} 
-            {{ task.text }} 
-            {{ task.date | date: 'short'}}
-            <button (click)='taskService.removeTask(task.id)'> Удалить задачу </button>
+            {{ idx + 1 + '.' }}
+            {{ task.title }}
+              <button (click)="taskService.completeTask(task.id)">Выполнено</button>
+              <button>Изменить</button>
+              <button (click)='taskService.removeTask(task.id)'>Удалить</button>
         </li>
     </ul>
 </div>
 
 <ng-template #emptyTask>
-    <h2 style="text-align: center;">Задачи отсутствуют</h2>
+    <h2 style="text-align: center;">Все задачи выполнены. Можешь отдохнуть</h2>
 </ng-template>
+
+<div id="board2" *ngIf='taskService.completedTasks.length; else emptyTask2'>
+  <h2>Выполненные задачи</h2>
+  <ul>
+    <li *ngFor='let task of taskService.completedTasks; let idx = index'>
+      {{ idx + 1 + '.' }}
+      {{ task.title }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #emptyTask2>
+  <h2 style="text-align: center;">Выполненных задач нет</h2>
+</ng-template>
+
