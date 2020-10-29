@@ -1,0 +1,19 @@
+li{
+    border: 1px solid black;
+    width: max-content;
+    padding: 5px;
+    margin: 5px;
+    list-style-type: none; 
+}
+
+ul{
+    padding: 0;
+    margin: 0;
+}
+
+#emptyTask,
+#board,
+#header{
+    display: flex;
+    justify-content: center;
+}
