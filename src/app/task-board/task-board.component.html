@@ -4,9 +4,9 @@
         <li *ngFor='let task of taskService.tasks; let idx = index'>
             {{ idx + 1 + '.' }}
             {{ task.title }}
-              <button (click)="taskService.completeTask(task.id)">Выполнено</button>
-              <button>Изменить</button>
-              <button (click)='taskService.removeTask(task.id)'>Удалить</button>
+              <button type="button" (click)="taskService.completeTask(task.id)" class="btn btn-dark">Выполнено</button>
+              <button type="button" data-toggle="modal" data-target="#editForm" class="btn btn-dark" (click)="title = taskService.getTitle(task.id); id = task.id">Изменить</button>
+              <button type="button" (click)='taskService.removeTask(task.id)' class="btn btn-dark">Удалить</button>
         </li>
     </ul>
 </div>
@@ -29,3 +29,23 @@
   <h2 style="text-align: center;">Выполненных задач нет</h2>
 </ng-template>
 
+
+<div class="modal fade" id="editForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Изменить текущую задачу</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" style="width: 100%" [(ngModel)]="title">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary" (click)="taskService.editTask(id, title)" data-dismiss="modal">Сохранить</button>
+      </div>
+    </div>
+  </div>
+</div>

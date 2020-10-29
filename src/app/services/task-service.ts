@@ -36,4 +36,13 @@ export class TaskService{
       this.completedTasks.push(completedTask)
       this.tasks = this.tasks.filter( t => t.completed == false)
     }
+
+    getTitle(id: number){
+      let title = this.tasks.find( t => t.id == id).title;
+      return title;
+    }
+
+    editTask(id: number, title: string){
+      this.tasks.find(t => t.id == id).title = title
+    }
 }

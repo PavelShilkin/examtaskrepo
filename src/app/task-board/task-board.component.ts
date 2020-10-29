@@ -9,10 +9,17 @@ import { TaskService } from '../services/task-service'
 
 export class TaskBoardComponent implements OnInit{
 
-  constructor(private taskService: TaskService) { }
+  title: string = ''
+  id: number = null
+
+  constructor(public taskService: TaskService) { }
 
   ngOnInit(){
     this.taskService.getData().subscribe(() => {
     })
+  }
+
+  setId(id: number){
+    let idx = id
   }
 }
